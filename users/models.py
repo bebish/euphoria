@@ -1,9 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.db.models import CheckConstraint, UniqueConstraint
 
-from users import constants
-
+from . import constants
+from .validators import validate_regex_username
 
 class User(AbstractUser):
     """Модель пользователя."""
@@ -20,6 +19,7 @@ class User(AbstractUser):
         "Никнейм",
         max_length=constants.USERNAME_AND_PASSWORD_MAX_LENGHT,
         unique=True,
+        validators=(validate_regex_username, ),
     )
     email = models.EmailField(
         "Email",
@@ -28,7 +28,6 @@ class User(AbstractUser):
     )
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ("first_name", "last_name", "username")
-
     class Meta:
         ordering = ("username",)
         verbose_name = "Пользователь"
@@ -36,4 +35,3 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
-
