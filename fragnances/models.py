@@ -12,9 +12,10 @@ class Fragnance(models.Model):
     )
     size = models.CharField(max_length=50)
     available = models.BooleanField(default=True)
-    rating = models.FloatField(
+    rating = models.IntegerField(
         validators=(MinValueValidator(0), MaxValueValidator(5))
     )
+    description = models.CharField(max_length=450)
     class Meta:
         verbose_name = "Духи"
         verbose_name_plural = "Духи"
