@@ -63,5 +63,3 @@ class UserViewSet(DjoserUserViewSet):
             return Response(status=HTTPStatus.NO_CONTENT)
         return Response(status=HTTPStatus.BAD_REQUEST)
 
-
-
