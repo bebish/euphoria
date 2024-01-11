@@ -59,13 +59,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("POSTGRES_DB", "django"),
+        "USER": os.getenv("POSTGRES_USER", "django_user"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+        "HOST": os.getenv("DB_HOST", "euphoria-db-1"),
+        "PORT": os.getenv("DB_PORT", 5432),
     }
 }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -84,18 +88,15 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
-# СЮДА НАДО GMAIL КОТОРЫЙ НЕ ОТВЕРГНЕТ ОТПРАВКУ А У МЕНЯ ЗАПРЕЩЕН
-# EMAIL_USE_TLS = True
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'ams800v@gmail.com'
-# EMAIL_HOST_PASSWORD = 'testpassword'
-# EMAIL_PORT = 587
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'ams800v@gmail.com'
+EMAIL_HOST_PASSWORD = 'testpassword'
+EMAIL_PORT = 587
 
 DJOSER = {
     "SERIALIZERS": {
@@ -107,10 +108,10 @@ DJOSER = {
         "user": ["rest_framework.permissions.IsAuthenticated"],
         "user_list": ["rest_framework.permissions.AllowAny"],
     },
-    # 'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
-    # 'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
-    # 'ACTIVATION_URL': '#/activate/{uid}/{token}',
-    # 'SEND_ACTIVATION_EMAIL': True,
+    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
 }
 
 REST_FRAMEWORK = {

@@ -1,3 +1,5 @@
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets
@@ -33,11 +35,20 @@ class RatingViewSet(viewsets.ModelViewSet):
 
 
 class FragnanceReviewViewSet(ModelViewSet):
+    """Вьюсет обзора духов."""
     queryset = FragnanceReview.objects.all()
     serializer_class = FragnanceReviewSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_fields = ['fragnance', 'text', 'rating']
-    search_fields = ['title', 'description']  
+    search_fields = ['title', 'description']
+
+    @method_decorator(cache_page(60 * 15))
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
+    @method_decorator(cache_page(60 * 15))
+    def retrieve(self, request, *args, **kwargs):
+        return super().retrieve(request, *args, **kwargs)
 
 
 class FragnanceReviewListCreateView(generics.ListCreateAPIView):
@@ -53,8 +64,17 @@ class FragnanceReviewDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class ReviewCommentViewSet(viewsets.ModelViewSet):
+    """Вьюсет комментариев к обзору духов."""
     queryset = ReviewComment.objects.all()
     serializer_class = ReviewCommentSerializer
+
+    @method_decorator(cache_page(60 * 15))
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
+    @method_decorator(cache_page(60 * 15))
+    def retrieve(self, request, *args, **kwargs):
+        return super().retrieve(request, *args, **kwargs)
 
 
 class LikeViewSet(viewsets.ModelViewSet):

@@ -1,5 +1,4 @@
 from rest_framework.routers import DefaultRouter
-from djoser import views
 from django.urls import path, include
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
@@ -17,12 +16,12 @@ router.register(r"fragnance", FragnanceViewSet, basename="fragnances")
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Your API",
+        title="EUPHORIA API",
         default_version='v1',
-        description="Your API description",
+        description="EUPHORIA API",
         terms_of_service="https://www.yourapp.com/terms/",
         contact=openapi.Contact(email="contact@yourapp.com"),
-        license=openapi.License(name="Your License"),
+        license=openapi.License(name="У НАС НЕТ ЛИЦЕНЗИИ ДЕЛАЕМ ЧТО ХОТИМ"),
     ),
     public=True,
     permission_classes=[permissions.AllowAny],
