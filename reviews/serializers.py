@@ -1,12 +1,22 @@
 from rest_framework import serializers
-from .models import FragnanceReview, ReviewComment, Like, Order, OrderItem, Rating
+from .models import (
+    FragnanceReview, ReviewComment, Like, Order, OrderItem, Rating
+)
 
 class FragnanceReviewSerializer(serializers.ModelSerializer):
     video_url = serializers.URLField()
     image = serializers.ImageField()
     class Meta:
         model = FragnanceReview
-        fields = ['id', 'title', 'video_url', 'image', 'user', 'text', 'created_at']
+        fields = [
+            'id',
+            'fragnance',
+            'video_url',
+            'image',
+            'user',
+            'text',
+            'created_at'
+        ]
 
 class ReviewCommentSerializer(serializers.ModelSerializer):
     class Meta:

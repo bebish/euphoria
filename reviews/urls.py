@@ -1,5 +1,14 @@
 from django.urls import path
-from .views import FragnanceReviewListCreateView, FragnanceReviewDetailView, FragnanceReviewViewSet, ReviewCommentViewSet, LikeViewSet, OrderViewSet, OrderItemViewSet, RatingViewSet
+from .views import (
+    FragnanceReviewListCreateView,
+    FragnanceReviewDetailView,
+    FragnanceReviewViewSet,
+    ReviewCommentViewSet,
+    LikeViewSet,
+    OrderViewSet,
+    OrderItemViewSet,
+    RatingViewSet
+)
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 

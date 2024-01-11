@@ -12,6 +12,8 @@ class FragnanceSerializer(serializers.ModelSerializer):
             'title',
             'brand',
             'price',
+            'type',
+            'sex',
             'image',
             'size',
             'available',

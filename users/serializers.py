@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from rest_framework.fields import SerializerMethodField
 
 from .models import User
 
@@ -15,3 +14,4 @@ class UserSerializer(serializers.ModelSerializer):
             "first_name",
             "last_name",
         )
+        ref_name = 'UserSerializerUsersApp'

@@ -3,10 +3,14 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from rest_framework.exceptions import ValidationError
 
 from users.models import User
+
+
 class Fragnance(models.Model):
     title = models.CharField(max_length=40)
     brand = models.CharField(max_length=35)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    type = models.CharField(max_length=20, default='Товар')
+    sex = models.CharField(max_length=8, default='Унисекс')
     image = models.ImageField(
         "Изображение духов", upload_to="fragnances/"
     )
