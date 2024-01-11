@@ -8,3 +8,4 @@ django-filter
 drf-yasg
 djoser
 python-dotenv
+django-cors-headers

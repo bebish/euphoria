@@ -26,14 +26,29 @@ cd infra/
 ```
 ### Заполняем файл .env вашими данными
 ```python
-.env
+SECRET_KEY=<КЛЮЧ ПРОЕКТА>
+DB_ENGINE=django.db.backends.postgresql
+DB_NAME=<ИМЯ БАЗЫ ДАННЫХ>
+POSTGRES_USER=<ИМЯ ПОЛЬЗОВАТЕЛЯ БД>
+POSTGRES_PASSWORD=<ПАРОЛЬ>
+DB_HOST=db
+DB_PORT=5432
 ```
-## Для работы необходим Docker
-### Запускаем проект в режиме демона
+Далее поднимаем проект в режиме демона, делаем миграции и собираем статику:
 ```python
-docker compose up -d
+docker-compose up -d
+docker-compose exec <имя_контейнера_бэкэнда> python3 manage.py makemigrations
+docker-compose exec <имя_контейнера_бэкэнда> python3 manage.py migrate
+docker-compose exec <имя_контейнера_бэкэнда> python3 manage.py collectstatic --noinput
 ```
-
+Создаем администратора командой:
+```python
+docker-compose exec <имя_контейнера_бэкэнда> python manage.py createsuperuser
+```
+Проект доступен по IP-адресу:
+```python
+http://????????
+```
 ---
 
 ## Проект готов к работе!

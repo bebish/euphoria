@@ -9,6 +9,7 @@ from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
+from .filters import FragnanceFilter
 from .models import Fragnance, Favourite, ShoppingList, FragnanceComment
 from .serializers import (
     FragnanceSerializer,
@@ -25,6 +26,8 @@ class FragnanceViewSet(ReadOnlyModelViewSet):
     pagination_class = LimitOffsetPagination
     permission_classes = (AllowAny,)
     filter_backends = (DjangoFilterBackend,)
+    filterset_class = FragnanceFilter
+    filterset_fields = ('title', 'brand')
     serializer_class = FragnanceSerializer
 
     @method_decorator(cache_page(60 * 15))
