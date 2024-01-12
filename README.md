@@ -12,6 +12,11 @@
 
 ---
 
+К проету подключена автоматическая документация Swagger:
+```python
+http://????????/api/swagger
+```
+
 Клонируем репозиторий:
 ```python
 git@github.com:bebish/euphoria.git

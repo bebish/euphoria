@@ -4,7 +4,6 @@ volumes:
   static_volume:
   media_volume:
   pg_data:
-  redoc:
 
 services:
   db:
@@ -35,7 +34,7 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ../frontend/build:/usr/share/nginx/html/
-      - ../docs/:/usr/share/nginx/html/api/docs/
+      - ../docs/:/app/static/drf_yasg
       - static_volume:/var/html/static/
       - media_volume:/var/html/media/
     ports:
