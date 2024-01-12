@@ -135,3 +135,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
+
+# Настройки для Celery
+CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Используйте свой URL брокера сообщений, например, Redis
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+# Настройка для обработки задач в текущем приложении
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
