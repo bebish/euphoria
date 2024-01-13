@@ -9,7 +9,7 @@ from users.models import User
 
 
 class SubscribeSerializer(serializers.ModelSerializer):
-    """Сериалайзер для вывода подписок пользователя."""
+    """Сериалайзер для подписок."""
 
     class Meta:
         model = Subscribe
@@ -33,14 +33,14 @@ class SubscribeSerializer(serializers.ModelSerializer):
             )
         return data
 
-class SubscriptionSerializer(UserSerializer): #  НЕ ДОДЕЛАНО!!!!!!!!!
-    """Сериалайзер для подписки."""
+class SubscriptionSerializer(UserSerializer): # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    """Сериалайзер для вывода списка подписок."""
 
-    review_count = serializers.ReadOnlyField(source="review.count")
+    review_count = serializers.ReadOnlyField(source="reviews.count")
 
     class Meta:
         model = User
         fields = (
             "username",
-            "review_count",
+            "review_count", # ВЫВЕСТИ ОБЩЕЕ КОЛИЧЕСТВО ОБЗОРОВ
         )

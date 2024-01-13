@@ -71,12 +71,6 @@ DATABASES = {
         "PORT": os.getenv("DB_PORT", 5432),
     }
 }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -105,8 +99,8 @@ SWAGGER_SETTINGS = {
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'ams800v@gmail.com'
-EMAIL_HOST_PASSWORD = 'testpassword'
+EMAIL_HOST_USER = 'rordufe@gmail.com'
+EMAIL_HOST_PASSWORD = 'fxhb rynu fuqn fmgt'
 EMAIL_PORT = 587
 
 DJOSER = {
