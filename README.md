@@ -14,7 +14,7 @@
 
 К проету подключена автоматическая документация Swagger:
 ```python
-http://????????/api/swagger
+http://euphoriastore.hopto.org/api/swagger
 ```
 
 Клонируем репозиторий:
@@ -50,9 +50,9 @@ docker-compose exec <имя_контейнера_бэкэнда> python3 manage.
 ```python
 docker-compose exec <имя_контейнера_бэкэнда> python manage.py createsuperuser
 ```
-Проект доступен по IP-адресу:
+Проект доступен по домену:
 ```python
-http://????????
+http://euphoriastore.hopto.org
 ```
 ---
 

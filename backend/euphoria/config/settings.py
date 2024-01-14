@@ -7,7 +7,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", default="default")
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'backend']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'backend', '158.160.9.246', 'euphoriastore.hopto.org']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -38,7 +38,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1', 'http://localhost']
+CSRF_TRUSTED_ORIGINS = [
+    'http://127.0.0.1', 'http://localhost',
+    'http://158.160.9.246',
+    'http://euphoriastore.hopto.org'
+]
 
 ROOT_URLCONF = 'config.urls'
 
