@@ -1,10 +1,35 @@
+from django.core.exceptions import ValidationError
 from rest_framework import serializers
+
 from .models import FragnanceComment, Fragnance, Favourite, ShoppingList
+
+
+class FragnanceCommentSerializer(serializers.ModelSerializer):
+    """Сериалайзер для комментариев к духам."""
+
+    class Meta:
+        model = FragnanceComment
+        fields = (
+            'id',
+            'rating',
+            'text',
+        )
+
+    def validate(self, data):
+        user = self.context['request'].user
+        fragnance = self.context['fragnance']
+        existing_comments = FragnanceComment.objects.filter(
+            user=user, fragnance=fragnance
+        )
+        if existing_comments.exists():
+            raise ValidationError('Вы уже добавили оценку продукту')
+        return data
 
 
 class FragnanceSerializer(serializers.ModelSerializer):
     """Сериалайзер духов."""
     rating = serializers.SerializerMethodField()
+    comments = FragnanceCommentSerializer(many=True, read_only=True)
     class Meta:
         model = Fragnance
         fields = (
@@ -18,7 +43,8 @@ class FragnanceSerializer(serializers.ModelSerializer):
             'size',
             'available',
             'rating',
-            'description'
+            'description',
+            'comments',
         )
 
     def get_rating(self, instance):
@@ -41,16 +67,6 @@ class FragnanceSerializer(serializers.ModelSerializer):
             )
         return image
 
-class FragnanceCommentSerializer(serializers.ModelSerializer):
-    """Сериалайзер для комментариев к духам."""
-
-    class Meta:
-        model = FragnanceComment
-        fields = (
-            'id',
-            'rating',
-            'text',
-        )
 
 
 class FavouriteSerializer(serializers.ModelSerializer):

@@ -14,7 +14,6 @@ from users.serializers import UserSerializer
 
 class UserViewSet(DjoserUserViewSet):
     """Вьюсет для модели User и Subscribe."""
-
     queryset = User.objects.all()
     serializer_class = UserSerializer
     pagination_class = LimitOffsetPagination
@@ -51,7 +50,7 @@ class UserViewSet(DjoserUserViewSet):
         )
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data, status=HTTPStatus.CREATED)
+        return Response('Вы подписались на автора', status=HTTPStatus.CREATED)
 
     @subscribe.mapping.delete
     def delete_subscribe(self, request, id):
@@ -60,6 +59,8 @@ class UserViewSet(DjoserUserViewSet):
         )
         if subscription.exists():
             subscription.delete()
-            return Response(status=HTTPStatus.NO_CONTENT)
+            return Response(
+                'Успешная отписка', status=HTTPStatus.NO_CONTENT
+            )
         return Response(status=HTTPStatus.BAD_REQUEST)
 

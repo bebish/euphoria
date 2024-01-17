@@ -5,7 +5,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", default="default")
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'backend', '158.160.9.246', 'euphoriastore.hopto.org']
@@ -37,6 +36,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://127.0.0.1', 'http://localhost',
+    'http://158.160.9.246',
+    'http://euphoriastore.hopto.org'
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -97,10 +102,14 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+SWAGGER_SETTINGS = {
+   'USE_SESSION_AUTH': False
+}
+
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'ams800v@gmail.com'
-EMAIL_HOST_PASSWORD = 'testpassword'
+EMAIL_HOST_USER = 'rordufe@gmail.com'
+EMAIL_HOST_PASSWORD = 'fxhb rynu fuqn fmgt'
 EMAIL_PORT = 587
 
 DJOSER = {
